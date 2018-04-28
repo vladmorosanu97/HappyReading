@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Express</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="./javascripts/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="info-page">
+            <img src="./images/book.png" class="logo-page">
+            <h3 class="title">Book Depository</h3>
+        </div>
+
+        <nav class="navigation-bar">
+            <ul class="list-buttons">
+                <li class="ui large button"  onclick="location.href='./login/index.html'">Login</li>
+                <li class="ui large button active" onclick="location.href='index.html'">Register</li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <section class="information-page">
+            <h1 class="main-title">So many books, so little time!</h1>
+            <p class="description">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a 
+                complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, 
+                dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure
+                 rationally encounter consequences that are extremely painful</p>
+        </section>
+        <section class="register-page">
+            <form class="ui large form" action="/api/insert" method="POST">
+                <div class="field">
+                    <label class="large">Name</label>
+                    <div class="two fields">
+                        <div class="field">
+                            <input type="text" name="firstname" placeholder="First Name">
+                        </div>
+                        <div class="field">
+                            <input type="text" name="lastname" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                        <label>E-mail</label>
+                        <input type="email" placeholder="joe@schmoe.com" name="email">
+                </div>
+                <div class="field">
+                        <label>Username</label>
+                        <input type="text" placeholder="Username" name="username">
+                </div>
+                <div class="field">
+                        <label>Password</label>
+                        <input type="password" name="password">
+                </div>
+                <div class="field">
+                        <label>Repeate password</label>
+                        <input type="password" name="repeatepassword">
+                </div>
+                <input type="submit" class="ui button" tabindex="0" value="Register">
+            </form>
+        </section>
+
+    </main>
+</body>
+
+</html>

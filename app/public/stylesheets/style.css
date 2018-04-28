@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Tajawal');
+
+*,h3 {
+     margin: 0;
+     font-family: 'Tajawal', sans-serif;
+}
+
+a {
+     color: #00b7ff;
+}
+
+.header {
+     background-color: #129490;
+     padding-top: 0.5em;
+     padding-bottom: 0.5em;
+     padding-left:5em;
+     padding-right: 5em;
+     display: flex;
+     justify-content: space-between;  
+}
+
+.logo-page {
+     width: 5em;
+     height: 5em;
+}
+
+.navigation-bar {
+     display: flex;
+     align-items: center;
+
+}
+
+.button{
+     padding-left: 3em;
+}
+.info-page {
+     display: flex;
+     align-items: center;
+}
+.info-page .title {
+     padding-left: 1em;
+     font-size: 2em;
+     color: #e0e1e2;
+}
+.main {
+     display: flex;
+     justify-content: space-between;
+}
+.information-page {
+     width: 50%;
+     margin-left: 10em;
+     margin-top: 16em;
+}
+.register-page {
+     margin-top: 7em;
+     margin-right: 5em;
+}
+.main-title {
+     font-size: 4em;
+     margin-bottom: 0.5em;
+}
+.description {
+     font-size: 1.4em;
+}
