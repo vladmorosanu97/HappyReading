@@ -62,3 +62,49 @@ a {
 .description {
      font-size: 1.4em;
 }
+.title-page, .user-options {
+   
+    margin-left: 20em;
+    margin-right: 20em;
+}
+.title-page {
+    margin-top: 8em;
+}
+.little {
+    font-size: 3em;
+}
+.author{
+    text-align: right;
+}
+
+.user-options {
+    display: flex;
+    margin-top: 5em;
+}
+.book-option {
+    /* padding-left: 3em;
+    padding-right: 3em;
+    padding-top: 2em;
+    padding-bottom: 2em; */
+    width: 23em;
+    height: 8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-width: 1px;
+    border-top-color: #e0e1e2;
+    border-top-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #e0e1e2;
+    border-bottom-style: solid;
+}
+.book-option:last-child {
+    border-left-width: 1px;
+    border-left-color: #e0e1e2;
+    border-left-style: solid;
+}
+
+.book-option:hover {
+    background-color: #e0e1e2;
+}
+

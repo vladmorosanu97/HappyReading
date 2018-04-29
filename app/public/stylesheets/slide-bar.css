@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Quicksand');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.main-page {
+    display: flex;
+}
+
+.menu-page {
+    position: fixed;
+
+    padding-top: 50px;
+    padding-bottom: 100px;
+    
+    width: 20%;
+    height: 100vh;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+
+    background-color: #222629;
+
+    font-family: 'Quicksand', sans-serif;
+}
+
+.user-section {
+    margin-left:7%;
+    margin-right: 7%;
+    display: flex;
+    justify-content: flex-end;
+   
+}
+.user-info {
+    text-align: right;
+}
+.user-info > .user-name {
+    margin-bottom: 10px;
+    color: white;
+    font-size:22px;
+}
+.user-info > .user-email {
+    color: #aaaaaa;
+    font-size: 15px;
+}
+.user-section > .user-photo {
+    width: 55px;
+    height: 55px;
+}
+
+
+.page-links {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    list-style-type: none;
+}
+
+.link {
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left:10%;
+    padding-right: 10%;
+    align-items:center;
+}
+
+.link a, .link {
+    color: #aaaaaa;
+    text-decoration: none;
+}
+.link:hover {
+    background-color: #383838;
+    transition: background-color 0.3s ease-out;
+}
+.selected, .selected:hover {
+    background-color: #1a1919;
+}
+
+.page-links .selected a{
+    color:white;
+}
+
+.page-links .selected i{
+    color:#f06060;
+}
+    
+
+.link i, .footer-menu i{
+    font-size: 29px;
+}
+
+
+
+.footer-menu {
+    text-align: center;
+    margin-top: 87px;
+}
+
+.footer-menu i{
+
+    color:#aaaaaa;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footer-menu > i:hover {
+    color:  #F6AA1C;
+}
+
+.content-page {
+    margin-left: 22%;
+    width: 78%;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+}

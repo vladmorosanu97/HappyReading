@@ -5,7 +5,13 @@
     <title>Express</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" />
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="./javascripts/jquery-3.3.1.min.js"></script>
+    
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
+    <script src="./javascripts/usersInfo.js"></script>
 </head>
 
 <body>
@@ -59,7 +65,7 @@
                         <label>Repeate password</label>
                         <input type="password" name="repeatepassword">
                 </div>
-                <input type="submit" class="ui button" tabindex="0" value="Register">
+                <input type="submit" class="ui button" tabindex="0" value="Register" onclick="setUserInfo()">
             </form>
         </section>
 

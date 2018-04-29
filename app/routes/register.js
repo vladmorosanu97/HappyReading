@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 var Joi = require('joi');
 var express = require('express');
+var configDataBase = require('./settings.js');
 var router = express.Router();
 //CREATE TABLE USERS
 // CREATE TABLE `mydb`.`users` ( `ID` INT(50) NOT NULL AUTO_INCREMENT , `firstname` VARCHAR(100) NOT NULL , `lastname` VARCHAR(100) NOT NULL , `email` VARCHAR(50) NOT NULL , `username` VARCHAR(50) NOT NULL , `password` VARCHAR(50) NOT NULL , PRIMARY KEY (`ID`), UNIQUE (`email`), UNIQUE (`username`)) ENGINE = InnoDB;
@@ -12,12 +13,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
-    var connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "mydb"
-      });
+    var connection = configDataBase.create();
     
       const schema = {
           firstname: Joi.string().min(3).required(),
@@ -61,11 +57,6 @@ router.post('/', function(req, res, next) {
         });
         res.redirect('../registered/');
      }
-
-      
-
-   
-   
 });
 
 module.exports = router;

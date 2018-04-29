@@ -1,16 +1,12 @@
 var mysql = require('mysql');
 var Joi = require('joi');
 var express = require('express');
+var configDataBase = require('./settings.js');
 var router = express.Router();
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
-    var connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "mydb"
-      });
+    var connection = configDataBase.create();
     
       const schema = {
           username: Joi.string().min(3).required(),
@@ -49,10 +45,6 @@ router.post('/', function(req, res, next) {
         });
        
      }
-
-      
-
-   
    
 });
 

@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var express = require('express');
+var configDataBase = require('./settings.js');
 var router = express.Router();
 //CREATE TABLE USERS
 // CREATE TABLE `mydb`.`users` ( `ID` INT(50) NOT NULL AUTO_INCREMENT , `firstname` VARCHAR(100) NOT NULL , `lastname` VARCHAR(100) NOT NULL , `email` VARCHAR(50) NOT NULL , `username` VARCHAR(50) NOT NULL , `password` VARCHAR(50) NOT NULL , PRIMARY KEY (`ID`), UNIQUE (`email`), UNIQUE (`username`)) ENGINE = InnoDB;
@@ -11,12 +12,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    var connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "mydb"
-      });
+  var connection = configDataBase.create();
       
       connection.connect(function(err) {
         if (err) throw err;
@@ -24,7 +20,8 @@ router.get('/', function(req, res, next) {
       });
       var sql = "CREATE TABLE `mydb`.`users` ( `ID` INT(50) NOT NULL AUTO_INCREMENT , `firstname` VARCHAR(100) NOT NULL , `lastname` VARCHAR(100) NOT NULL , `email` VARCHAR(50) NOT NULL , `username` VARCHAR(50) NOT NULL , `password` VARCHAR(50) NOT NULL , PRIMARY KEY (`ID`), UNIQUE (`email`), UNIQUE (`username`)) ENGINE = InnoDB;";
       connection.query(sql, function (err, result) {
-        if (err) throw err;
+        if (err) 
+          throw err;
         console.log("Table created with succes");
       });
       connection.end();
