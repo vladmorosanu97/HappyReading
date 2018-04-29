@@ -172,3 +172,7 @@ a {
     color: #e0e1e2;
     margin-right: 1em;
 }
+
+* [onclick] {
+    cursor: pointer;
+}
