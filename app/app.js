@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
 var configDataBase = require('./routes/settings.js');
-
+var getBooks = require('./routes/books');
 var indexRouter = require('./routes/index');
 var dataBase = require('./routes/dbs');
 var verifInsert = require('./routes/register');
@@ -45,5 +45,7 @@ app.use('/api/users/:username', (req, res) => {
 
 app.use('/api/insert', verifInsert);
 app.use('/api/login', login);
+app.use('/setup', dataBase);
+app.use('/api/books', getBooks);
 
 module.exports = app;

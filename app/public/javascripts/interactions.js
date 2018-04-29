@@ -49,3 +49,53 @@ function onloadUserInfo() {
         }
     });
 }
+function parseBooks() {
+    getJSON('http://localhost:3000/api/books',  function(err, data) {
+    
+        if (err != null) {
+            console.error(err);
+        } else {
+            
+            for(let index = 0; index<data.length; index++) {
+                let section = document.getElementById('books-page');
+
+                let article = document.createElement('article');
+                article.setAttribute('class', 'book-article');
+                
+                section.appendChild(article);
+
+                let img = document.createElement('img');
+                img.setAttribute('src', `../${data[index].imageLink}`);
+                img.setAttribute('class', 'image-book');
+
+                article.appendChild(img);
+
+                let title = document.createElement('h1');
+                title.setAttribute('class', 'title-book');
+                title.innerHTML = data[index].title;
+                article.appendChild(title);
+
+                let container = document.createElement('div');
+                container.setAttribute('class', 'other-info');
+
+                article.appendChild(container);
+
+                let author = document.createElement('h3');
+                author.setAttribute('class', 'author-book');
+                author.innerHTML = data[index].author;
+
+                container.appendChild(author);
+
+                let copies = document.createElement('h3');
+                copies.setAttribute('class', 'available-books');
+
+                copies.innerHTML = data[index].copies;
+
+                container.appendChild(copies);
+
+
+                
+            }
+        }
+    });
+}
