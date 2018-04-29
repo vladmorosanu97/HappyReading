@@ -1,7 +1,8 @@
+
+
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
-
 var getJSON = function(url, callback) {
 
     var xhr = new XMLHttpRequest();
@@ -61,6 +62,20 @@ function parseBooks() {
 
                 let article = document.createElement('article');
                 article.setAttribute('class', 'book-article');
+                article.setAttribute('id', `${data[index].ID}`);
+                article.addEventListener('click', () => {
+                    
+                    let value =  orders.toggleOrder(data[index].ID);
+                    if(value != -1) {
+                        article.classList.toggle('selectedOrder');
+                        document.getElementById('cart').innerHTML = `<i class="shop icon" ></i> Add to cart (${value})`;
+                        document.getElementById('info-errors').innerHTML = '';
+                    }
+                    else {
+                        document.getElementById('info-errors').innerHTML = 'Poti adauga maximum 3 carti in cos!';
+                    }
+                    
+                });
                 
                 section.appendChild(article);
 
@@ -93,9 +108,9 @@ function parseBooks() {
 
                 container.appendChild(copies);
 
-
-                
             }
         }
     });
 }
+
+

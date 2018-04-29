@@ -163,3 +163,12 @@ a {
 .book-article:hover {
     background-color: #e0e1e2;
 }
+
+.selectedOrder, .selectedOrder:hover {
+    background-color: #f06060;
+}
+
+.info-errors {
+    color: #e0e1e2;
+    margin-right: 1em;
+}
