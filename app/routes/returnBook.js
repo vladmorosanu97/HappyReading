@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
     });
     
 
-    var sql = "DELETE FROM `current_borrowing` WHERE `id_book` = " + req.param('idBook');
+    var sql = "DELETE FROM `current_borrowing` WHERE `id_book` = " + req.param('idBook') + " and `id_user` = " + req.param('idUser');
     connection.query(sql, function (err, result) {
         if (err) throw err;
     });

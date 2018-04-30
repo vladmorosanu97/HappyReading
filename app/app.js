@@ -77,8 +77,7 @@ app.get('/api/users/:username', (req, res) => {
     if (err) throw err;
     console.log("Connected!");
   });
-
-  var sql = "SELECT id, firstname, lastname, email, username from users where username = " + mysql.escape(req.params.username);
+  var sql = "SELECT u.id, u.firstname, u.lastname, u.email, u.username, (select DISTINCT count(id) from current_borrowing where id_user = u.id) as 'books' from users u where u.username = " + mysql.escape(req.params.username);
   connection.query(sql, function (err, result) {
   if (err) throw err;
   res.json(result);

@@ -33,6 +33,8 @@ function isLoged() {
 function onloadUserInfo() {
     let firstname, lastname, email, id;
     let username = localStorage.getItem('username');
+
+
     getJSON(`http://localhost:3000/api/users/${username}`,  function(err, data) {
     
         if (err != null) {
@@ -43,12 +45,19 @@ function onloadUserInfo() {
             lastname = data[0].lastname;
             email = data[0].email;
             id = data[0].id;
+            books = data[0].books;
+
             localStorage.setItem('id', id);
             
             let userFullName = document.getElementById('user-name');
             userFullName.innerHTML = firstname.capitalize() + ' ' + lastname.capitalize();
             let userEmail = document.getElementById('user-email');
             userEmail.innerHTML = email;
+
+            let userBooks = document.getElementById('user-books');
+            userBooks.innerHTML = books;
+
+            localStorage.setItem('countBooks',books);
         }
     });
 }
@@ -259,6 +268,8 @@ function getBorrowBooks() {
 }
 
 function returnBook(idBook) {
+        let idUser = localStorage.getItem('id');
+
         let form = document.createElement('form');
         form.setAttribute('action', 'http://localhost:3000/api/books/return');
         form.setAttribute('method', 'post');
@@ -269,7 +280,17 @@ function returnBook(idBook) {
         console.log(idBook);
         inputID.setAttribute('value', `${idBook}`);
 
+        let inputUser = document.createElement('input');
+        inputUser.setAttribute('type', 'hidden');
+        inputUser.setAttribute('name', 'idUser');
+        inputUser.setAttribute('value', `${idUser}`);
+
         form.appendChild(inputID);
+        form.appendChild(inputUser);
         document.body.appendChild(form);
         form.submit();
+
+        let books = localStorage.getItem('countBooks');
+        books--;
+        localStorage.setItem('countBooks', books);
 }
