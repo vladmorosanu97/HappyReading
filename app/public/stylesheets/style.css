@@ -173,6 +173,12 @@ a {
     margin-right: 1em;
 }
 
-* [onclick] {
+* [onclick], .book-article {
     cursor: pointer;
+}
+
+.sold {
+    background-color: #e0e1e2;
+    color: #aaaaaa;
+    opacity: 0.5;
 }

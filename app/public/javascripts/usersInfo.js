@@ -2,6 +2,7 @@
 function setUserInfo() {
     let username = document.getElementById('input_username').value;
     localStorage.setItem('username', username);
+    localStorage.setItem('countBooks', 0);
 }
 function removeUserInfo() {
     localStorage.removeItem('username');

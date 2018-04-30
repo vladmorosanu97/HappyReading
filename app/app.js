@@ -10,6 +10,7 @@ var dataBase = require('./routes/dbs');
 var verifInsert = require('./routes/register');
 var login = require('./routes/login');
 var bodyParser = require('body-parser');
+var addBorrow = require('./routes/addBorrow');
 
 var app = express();
 let courses = [
@@ -28,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/users/:username', (req, res) => {
+app.get('/api/users/:username', (req, res) => {
   var connection = configDataBase.create();
   connection.connect(function(err) {
     if (err) throw err;
@@ -40,12 +41,45 @@ app.use('/api/users/:username', (req, res) => {
   if (err) throw err;
   res.json(result);
   });
-  
 });
 
 app.use('/api/insert', verifInsert);
 app.use('/api/login', login);
 app.use('/setup', dataBase);
 app.use('/api/books', getBooks);
+app.use('/api/books/insert', addBorrow);
+app.get('/api/books/:iduser', function(req, res) {
+    var connection = configDataBase.create();
+
+    connection.connect(function(err) {
+      if (err) throw err;
+      console.log("Connected!");
+    });
+      
+    var sql = "SELECT b.ID, b.author, b.country, b.imageLink, b.language, b.link, b.pages,  b.title, b.year, b.copies from books b, current_borrowing c where c.id_book = b.id  and c.id_user = " + mysql.escape(req.params.iduser);
+
+    connection.query(sql, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+    connection.end();
+});
+
+app.get('/api/books/history/:iduser', function(req, res) {
+  var connection = configDataBase.create();
+
+  connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
+    
+  var sql = "SELECT b.ID, b.author, b.country, b.imageLink, b.language, b.link, b.pages,  b.title, b.year, b.copies from books b, history_borrowed c where c.id_book = b.id  and c.id_user = " + mysql.escape(req.params.iduser);
+
+  connection.query(sql, function (err, result) {
+    if (err) throw err;
+    res.json(result);
+  });
+  connection.end();
+});
 
 module.exports = app;

@@ -5,21 +5,21 @@
     <title>Express</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" />
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="../stylesheets/slide-bar.css">
+    <link rel="stylesheet" href="../../stylesheets/slide-bar.css">
     <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
-  <script src="../javascripts/interactions.js"></script>
-  <script src="../javascripts/usersInfo.js"></script>
-  <script src="../javascripts/orders.js"></script>
+  <script src="../../javascripts/interactions.js"></script>
+  <script src="../../javascripts/usersInfo.js"></script>
+  <script src="../../javascripts/orders.js"></script>
 
 </head>
 
-<body onload="isLoged();parseBooks();">
+<body onload="isLoged(); getBorrowBooks();">
     <header class="header">
         <div class="info-page">
-            <img src="../images/book.png" class="logo-page">
+            <img src="../../images/book.png" class="logo-page">
             <h3 class="title">Book Depository</h3>
         </div>
 
@@ -27,7 +27,7 @@
             <h3 class="info-errors" id="info-errors"></h3>
             <ul class="list-buttons">
                 
-                <div class="ui large primary button" style="background-color: #f06060" id="cart" onclick="borrowBooks()">
+                <div class="ui large primary button" style="background-color: #f06060" id="cart">
                     <i class="shop icon" ></i> Add to Cart
                 </div>
                 <button class="ui large button" onclick="removeUserInfo();">Logout</button>
@@ -46,11 +46,11 @@
                 <i class="home icon"></i>
                 <a href="#" class="text-link">Home</a>
             </li >
-            <li class="link selected">
+            <li class="link" onclick="location.href='../index.html';">
                 <i class="book icon"></i>
                 <a class="text-link">View all books</a>
             </li>
-            <li class="link"  onclick="location.href='./borrowed/index.html';">
+            <li class="link  selected">
                 <i class="archive icon"></i>
                 <a class="text-link">Your books</a>
             </li>
@@ -65,11 +65,18 @@
        
     </section>
     <section class="content-page">
-        <h3 class="main-title very-little">Available books:</h3>
+        <h3 class="main-title very-little">Active borrowed books:</h3>
+
         <section class="books-page" id="books-page">
             
         </section>
-       
+
+        <h3 class="main-title very-little">History commands:</h3>
+
+        <section class="books-page" id="books-history">
+            
+        </section>
+        
     </section>
    
 </body>
