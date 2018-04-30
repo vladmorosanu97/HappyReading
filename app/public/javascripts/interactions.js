@@ -78,6 +78,7 @@ function createBooksOnPage(url, idElement, addEvent) {
                     let article = document.createElement('article');
                     article.setAttribute('class', 'book-article');
                     article.setAttribute('id', `${data[index].ID}`);
+                   
     
                     if(addEvent == true) {
                         if(data[index].copies <= 0) {
@@ -86,23 +87,31 @@ function createBooksOnPage(url, idElement, addEvent) {
                         article.addEventListener('click', () => {
                         
                         if(data[index].copies != 0) {
-                            let value =  orders.toggleOrder(data[index].ID);
-                            let countSelected = orders.getCount();
-                            if(value >= 0) {
-                                article.classList.toggle('selectedOrder');
-                                document.getElementById('cart').innerHTML = `<i class="shop icon" ></i> Add to cart (${countSelected})`;
-                                document.getElementById('info-errors').innerHTML = '';
-                            }
-                            else {
-                                if(value == -1) {
-                                    document.getElementById('info-errors').innerHTML = 'Poti adauga maximum 3 carti in cos!';
+
+                            if(!article.classList.contains('owned')) {
+
+
+                                let value =  orders.toggleOrder(data[index].ID);
+                                let countSelected = orders.getCount();
+                                if(value >= 0) {
+                                    article.classList.toggle('selectedOrder');
+                                    document.getElementById('cart').innerHTML = `<i class="shop icon" ></i> Add to cart (${countSelected})`;
+                                    document.getElementById('info-errors').innerHTML = '';
                                 }
                                 else {
-                                    if(value == -2) {
-                                        document.getElementById('info-errors').innerHTML = 'Puteti imprumuta maximum 5 carti!';
+                                    if(value == -1) {
+                                        document.getElementById('info-errors').innerHTML = 'Poti adauga maximum 3 carti in cos!';
                                     }
+                                    else {
+                                        if(value == -2) {
+                                            document.getElementById('info-errors').innerHTML = 'Puteti imprumuta maximum 5 carti!';
+                                        }
+                                    }
+                                    
                                 }
-                                
+                            }
+                            else {
+                                document.getElementById('info-errors').innerHTML = 'Aveti deja aceasta carte imprumutata!';
                             }
                         }
                         });
@@ -116,7 +125,7 @@ function createBooksOnPage(url, idElement, addEvent) {
                     img.setAttribute('class', 'image-book');
     
                     article.appendChild(img);
-    
+
                     let title = document.createElement('h1');
                     title.setAttribute('class', 'title-book');
                     title.innerHTML = data[index].title;
@@ -144,6 +153,24 @@ function createBooksOnPage(url, idElement, addEvent) {
             }
         }
     });
+    let iduser = localStorage.getItem('id');
+    getJSON(`http://localhost:3000/api/books/${iduser}`,  function(err, data) {
+    
+        if (err != null) {
+            console.error(err);
+        } else {
+            
+            if (err != null) {
+                console.error(err);
+            } else {
+                
+                for(let index = 0; index<data.length; index++) { 
+                    document.getElementById(`${data[index].ID}`).classList.add('owned');
+                }
+            }
+        }
+    });
+
 }
 function createBooksOnPageWithDetails(url, idElement) {
     getJSON(url,  function(err, data) {
@@ -160,8 +187,11 @@ function createBooksOnPageWithDetails(url, idElement) {
                     let section = document.getElementById(idElement);
     
                     let article = document.createElement('article');
+                    // article.setAttribute('style','background-color: #FFFFFF; opacity: 1;');
                     article.setAttribute('class', 'book-article');
+                    article.setAttribute('style','background-color: #ffffff; opacity: 1');
                     article.classList.add('details');
+                    article.classList.add('special-article');
                     article.setAttribute('id', `${data[index].ID}`);
                     
                     section.appendChild(article);

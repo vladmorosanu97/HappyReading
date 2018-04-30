@@ -209,3 +209,11 @@ a {
     justify-content: flex-end;
     padding-top: 1em;
 }
+
+.owned {
+    background-color: #7BCDBA;
+}
+
+.owned:hover {
+    background-color: #7BCDBA;
+}

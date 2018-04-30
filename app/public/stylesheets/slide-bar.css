@@ -29,11 +29,12 @@
     margin-left:7%;
     margin-right: 7%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
    
 }
 .user-info {
     text-align: right;
+    overflow: hidden;
 }
 .user-info > .user-name {
     margin-bottom: 10px;
@@ -119,4 +120,12 @@
 .logout {
     display: flex;
     justify-content: center;
+}
+.user-books-intro {
+    display: flex;
+    color: white;
+    font-size: 2em;
+}
+.number-books {
+    font-size: 1.3em;
 }
