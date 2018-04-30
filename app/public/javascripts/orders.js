@@ -1,5 +1,6 @@
 let orders = ((window) => {
     let order = {
+        countSelected:0,
         count: localStorage.getItem('countBooks'),
         orderList: new Array(),
         borrowBooks: new Array(),
@@ -9,12 +10,14 @@ let orders = ((window) => {
         if(order.orderList.count == 0){
             order.orderList.push(id);
             order.count++;
+            order.countSelected++;
         }
         else {
             let value = order.orderList.indexOf(id);
             if(value != -1) {
                 order.orderList.splice(value,1);
                 order.count--;
+                order.countSelected--;
             }
             else {
                 if(order.orderList.length == 3) {
@@ -27,6 +30,7 @@ let orders = ((window) => {
                 }
                 order.orderList.push(id);
                 order.count++;
+                order.countSelected++;
             }
         }
         localStorage.setItem('countBooks', order.count);
@@ -36,7 +40,7 @@ let orders = ((window) => {
         return order.orderList;
     }
     function getCount() {
-        return order.count;
+        return order.countSelected;
     }
 
     function addBorrowBook(idBook){
@@ -49,6 +53,7 @@ let orders = ((window) => {
     return {
         toggleOrder,
         getOrderList,
-        addBorrowBook
+        addBorrowBook,
+        getCount
     }
 })(window);

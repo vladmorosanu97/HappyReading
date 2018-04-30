@@ -182,3 +182,30 @@ a {
     color: #aaaaaa;
     opacity: 0.5;
 }
+
+.details {
+    display: flex;
+    flex-direction: row;
+    width: 60em;
+    max-width: 60em;
+}
+.block {
+    display: block;
+    flex-direction: column;
+    margin-left: 3em;
+    width: 50em;
+    
+}
+.details:hover {
+    background-color: white;
+}
+.info-book{
+    font-size: 1em;
+    padding-top: 1em;
+}
+
+.left-page {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1em;
+}

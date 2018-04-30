@@ -11,6 +11,7 @@ var verifInsert = require('./routes/register');
 var login = require('./routes/login');
 var bodyParser = require('body-parser');
 var addBorrow = require('./routes/addBorrow');
+var returnBook = require('./routes/returnBook');
 
 var app = express();
 let courses = [
@@ -29,25 +30,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.get('/api/users/:username', (req, res) => {
-  var connection = configDataBase.create();
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-  });
 
-  var sql = "SELECT id, firstname, lastname, email, username from users where username = " + mysql.escape(req.params.username);
-  connection.query(sql, function (err, result) {
-  if (err) throw err;
-  res.json(result);
-  });
-});
 
 app.use('/api/insert', verifInsert);
 app.use('/api/login', login);
 app.use('/setup', dataBase);
 app.use('/api/books', getBooks);
 app.use('/api/books/insert', addBorrow);
+app.use('/api/books/return', returnBook);
 app.get('/api/books/:iduser', function(req, res) {
     var connection = configDataBase.create();
 
@@ -80,6 +70,19 @@ app.get('/api/books/history/:iduser', function(req, res) {
     res.json(result);
   });
   connection.end();
+});
+app.get('/api/users/:username', (req, res) => {
+  var connection = configDataBase.create();
+  connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
+
+  var sql = "SELECT id, firstname, lastname, email, username from users where username = " + mysql.escape(req.params.username);
+  connection.query(sql, function (err, result) {
+  if (err) throw err;
+  res.json(result);
+  });
 });
 
 module.exports = app;
