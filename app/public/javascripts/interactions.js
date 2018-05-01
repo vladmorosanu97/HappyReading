@@ -78,11 +78,17 @@ function createBooksOnPage(url, idElement, addEvent) {
                     let article = document.createElement('article');
                     article.setAttribute('class', 'book-article');
                     article.setAttribute('id', `${data[index].ID}`);
-                   
+
+
     
                     if(addEvent == true) {
                         if(data[index].copies <= 0) {
                             article.classList.add('sold');
+                            article.setAttribute("data-tooltip","This book is unavailable");
+                            article.setAttribute("data-position","top center");
+                            article.setAttribute("data-inverted","");
+                    
+                          
                         }
                         article.addEventListener('click', () => {
                         
@@ -100,18 +106,18 @@ function createBooksOnPage(url, idElement, addEvent) {
                                 }
                                 else {
                                     if(value == -1) {
-                                        document.getElementById('info-errors').innerHTML = 'Poti adauga maximum 3 carti in cos!';
+                                        document.getElementById('info-errors').innerHTML = 'You can borrow only 3 books at once!';
                                     }
                                     else {
                                         if(value == -2) {
-                                            document.getElementById('info-errors').innerHTML = 'Puteti imprumuta maximum 5 carti!';
+                                            document.getElementById('info-errors').innerHTML = 'You can have only 5 borrowed books';
                                         }
                                     }
                                     
                                 }
                             }
                             else {
-                                document.getElementById('info-errors').innerHTML = 'Aveti deja aceasta carte imprumutata!';
+                                document.getElementById('info-errors').innerHTML = 'You have this book already!';
                             }
                         }
                         });
@@ -166,6 +172,8 @@ function createBooksOnPage(url, idElement, addEvent) {
                 
                 for(let index = 0; index<data.length; index++) { 
                     document.getElementById(`${data[index].ID}`).classList.add('owned');
+                    document.getElementById(`${data[index].ID}`).setAttribute('data-tooltip', 'You have this book already');
+                    document.getElementById(`${data[index].ID}`).setAttribute('data-position', 'top center');
                 }
             }
         }
@@ -185,11 +193,11 @@ function createBooksOnPageWithDetails(url, idElement) {
                 
                 for(let index = 0; index<data.length; index++) {
                     let section = document.getElementById(idElement);
-    
+                    
                     let article = document.createElement('article');
                     // article.setAttribute('style','background-color: #FFFFFF; opacity: 1;');
                     article.setAttribute('class', 'book-article');
-                    article.setAttribute('style','background-color: #ffffff; opacity: 1');
+                    article.setAttribute('style','background-color: #ffffff; opacity: 1; cursor: default;');
                     article.classList.add('details');
                     article.classList.add('special-article');
                     article.setAttribute('id', `${data[index].ID}`);
@@ -201,6 +209,8 @@ function createBooksOnPageWithDetails(url, idElement) {
                     img.setAttribute('src', `../../${data[index].imageLink}`);
                     img.setAttribute('class', 'image-book');
     
+                    let span = document.createElement('span');
+                   
                     article.appendChild(img);
     
                     let container = document.createElement('div');
@@ -324,3 +334,4 @@ function returnBook(idBook) {
         books--;
         localStorage.setItem('countBooks', books);
 }
+
