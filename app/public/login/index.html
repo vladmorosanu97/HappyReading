@@ -38,13 +38,13 @@
         </section>
         <section class="register-page">
             <form class="ui large form" action="/api/login" method="POST" id="login" onsubmit="return validateLogin();">
-                <div class="field" id="form-login-username">
+                <div class="field required" id="form-login-username">
                         <label id="form-login-username-label">Username</label>
                         <input type="text" placeholder="Username" name="username" id="input_username">
                 </div>
-                <div class="field" id="form-login-password">
+                <div class="field required" id="form-login-password">
                         <label id="form-login-password-label">Password</label>
-                        <input type="password" name="password">
+                        <input type="password" name="password" placeholder="Password">
                 </div>
                 <input type="submit" class="ui button" tabindex="0" value="Login" onclick="setUserInfo();">
             </form>

@@ -17,27 +17,27 @@ function validateRegister() {
 
     if (firstname == "" || lastname == "") {
         document.getElementById('form-name').classList.add('error');
-        document.getElementById('form-name-label').innerHTML="First name and last name are obligatory";
+        document.getElementById('form-name-label').innerHTML="First name and last name are required";
         return false;
     }
     if(email == "") {
         document.getElementById('form-email').classList.add('error');
-        document.getElementById('form-email-label').innerHTML="E-mail is obligatory";
+        document.getElementById('form-email-label').innerHTML="E-mail is required";
         return false;
     }
     if(username == "") {
         document.getElementById('form-username').classList.add('error');
-        document.getElementById('form-username-label').innerHTML="Username is obligatory";
+        document.getElementById('form-username-label').innerHTML="Username is required";
         return false;
     }
     if(password == "") {
         document.getElementById('form-password').classList.add('error');
-        document.getElementById('form-password-label').innerHTML="Password is obligatory";
+        document.getElementById('form-password-label').innerHTML="Password is required";
         return false;
     }
     if(repeatePassword == "") {
         document.getElementById('form-repeate-password').classList.add('error');
-        document.getElementById('form-repeate-password-label').innerHTML="Please repeate the password";
+        document.getElementById('form-repeate-password-label').innerHTML="Please repeat the password";
         return false;
     }
     if(password != repeatePassword) {
@@ -53,12 +53,12 @@ function validateLogin() {
     let password = document.forms["login"]["password"].value;
     if(username == "") {
         document.getElementById('form-login-username').classList.add('error');
-        document.getElementById('form-login-username-label').innerHTML="Username is obligatory";
+        document.getElementById('form-login-username-label').innerHTML="Username is required";
         return false;
     }
     if(password == "") {
         document.getElementById('form-login-password').classList.add('error');
-        document.getElementById('form-login-password-label').innerHTML="Password is obligatory";
+        document.getElementById('form-login-password-label').innerHTML="Password is required";
         return false;
     }
     setUserLogin();

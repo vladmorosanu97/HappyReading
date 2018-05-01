@@ -84,7 +84,7 @@ function createBooksOnPage(url, idElement, addEvent) {
                     if(addEvent == true) {
                         if(data[index].copies <= 0) {
                             article.classList.add('sold');
-                            article.setAttribute("data-tooltip","This book is unavailable");
+                            article.setAttribute("data-tooltip","This book is unavailable!");
                             article.setAttribute("data-position","top center");
                             article.setAttribute("data-inverted","");
                     
@@ -106,18 +106,18 @@ function createBooksOnPage(url, idElement, addEvent) {
                                 }
                                 else {
                                     if(value == -1) {
-                                        document.getElementById('info-errors').innerHTML = 'You can borrow only 3 books at once!';
+                                        document.getElementById('info-errors').innerHTML = 'You can only add to your cart up to 3 books at once!';
                                     }
                                     else {
                                         if(value == -2) {
-                                            document.getElementById('info-errors').innerHTML = 'You can have only 5 borrowed books';
+                                            document.getElementById('info-errors').innerHTML = 'You can only borrow up to 5 books!';
                                         }
                                     }
                                     
                                 }
                             }
                             else {
-                                document.getElementById('info-errors').innerHTML = 'You have this book already!';
+                                document.getElementById('info-errors').innerHTML = 'You already have this book!';
                             }
                         }
                         });
@@ -172,7 +172,7 @@ function createBooksOnPage(url, idElement, addEvent) {
                 
                 for(let index = 0; index<data.length; index++) { 
                     document.getElementById(`${data[index].ID}`).classList.add('owned');
-                    document.getElementById(`${data[index].ID}`).setAttribute('data-tooltip', 'You have this book already');
+                    document.getElementById(`${data[index].ID}`).setAttribute('data-tooltip', 'You already have this book!');
                     document.getElementById(`${data[index].ID}`).setAttribute('data-position', 'top center');
                 }
             }
