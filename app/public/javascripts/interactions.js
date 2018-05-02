@@ -123,7 +123,7 @@ function createBooksOnPage(url, idElement, addEvent) {
                                     }
                                 }
                                 else {
-                                     document.getElementById('info-errors').innerHTML = 'You have due, please return books!';
+                                     document.getElementById('info-errors').innerHTML = 'Please return a book to be able to borrow more!';
                                 }
                                 
                             }
@@ -414,7 +414,7 @@ function startCountDown(date) {
             articles.forEach((element) => {
                 if(!element.classList.contains('due')) {
                     element.classList.add('due');
-                    element.setAttribute('data-tooltip', 'You have due! Please return the books!');
+                    element.setAttribute('data-tooltip', 'Please return a book to be able to borrow more!');
                     element.setAttribute('data-position', 'top center');
                 }
             });
