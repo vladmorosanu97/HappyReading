@@ -175,8 +175,7 @@ function createBooksOnPage(url, idElement, addEvent) {
                 }
             }
         }
-    });
-    let iduser = localStorage.getItem('id');
+        let iduser = localStorage.getItem('id');
     getJSON(`http://localhost:3000/api/books/${iduser}`,  function(err, data) {
     
         if (err != null) {
@@ -195,6 +194,8 @@ function createBooksOnPage(url, idElement, addEvent) {
             }
         }
     });
+    });
+    
 
 }
 function createBooksOnPageWithDetails(url, idElement) {

@@ -17,9 +17,9 @@ router.get('/', function(req, res, next) {
 
     connection.query(sql, function (err, result) {
         if (err) throw err;
+        connection.end();
         res.json(result);
     });
-    connection.end();
    
 });
 

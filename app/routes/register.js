@@ -45,7 +45,7 @@ router.post('/', function(req, res, next) {
             repeatePassword: req.body.repeatepassword
         }
 
-        var sql = "INSERT INTO mydb.users (firstname, lastname, email, username, password) VALUES ?";
+        var sql = "INSERT INTO users (firstname, lastname, email, username, password) VALUES ?";
         
         var values = [
             [user.firstname, user.lastname, user.email, user.username, user.password],

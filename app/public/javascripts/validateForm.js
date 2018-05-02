@@ -14,12 +14,6 @@ function validateRegister() {
     let username = document.forms["register"]["username"].value;
     let password = document.forms["register"]["password"].value;
     let repeatePassword = document.forms["register"]["repeatepassword"].value;
-
-    if (firstname == "" || lastname == "") {
-        document.getElementById('form-name').classList.add('error');
-        document.getElementById('form-name-label').innerHTML="First name and last name are required";
-        return false;
-    }
     if(email == "") {
         document.getElementById('form-email').classList.add('error');
         document.getElementById('form-email-label').innerHTML="E-mail is required";

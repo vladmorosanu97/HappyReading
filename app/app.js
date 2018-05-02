@@ -50,9 +50,10 @@ app.get('/api/books/:iduser', function(req, res) {
 
     connection.query(sql, function (err, result) {
       if (err) throw err;
+      connection.end();
       res.json(result);
     });
-    connection.end();
+
 });
 
 app.get('/api/books/history/:iduser', function(req, res) {
@@ -67,9 +68,10 @@ app.get('/api/books/history/:iduser', function(req, res) {
 
   connection.query(sql, function (err, result) {
     if (err) throw err;
+    connection.end();
     res.json(result);
   });
-  connection.end();
+
 });
 app.get('/api/users/:username', (req, res) => {
   var connection = configDataBase.create();
@@ -80,6 +82,7 @@ app.get('/api/users/:username', (req, res) => {
   var sql = "SELECT u.id, u.firstname, u.lastname, u.email, u.username, (select DISTINCT count(id) from current_borrowing where id_user = u.id) as 'books' from users u where u.username = " + mysql.escape(req.params.username);
   connection.query(sql, function (err, result) {
   if (err) throw err;
+  connection.end();
   res.json(result);
   });
 });

@@ -47,12 +47,12 @@ router.post('/', function(req, res, next) {
 
             connection.query(sql, function (err, result) {
                 if (err) throw err;
+                connection.end();
             });
         });
     }
-
-    // connection.end();
     res.redirect('../../books/index.html');
+
 });
 
 module.exports = router;
