@@ -217,3 +217,19 @@ a {
 .owned:hover {
     background-color: #7BCDBA;
 }
+.list-buttons{
+    display: flex;
+}
+.countdown-div{
+    display: flex;
+    margin-right: 2em;
+    align-items: center;
+}
+.countdown-div *{
+    margin:0;
+    color:#e0e1e2;
+}
+.due:hover {
+    background-color: #222629;
+    color: #e0e1e2;
+}

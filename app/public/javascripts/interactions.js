@@ -60,6 +60,10 @@ function onloadUserInfo() {
             localStorage.setItem('countBooks',books);
         }
     });
+    let date = localStorage.getItem('date');
+    let countBooks = Number(localStorage.getItem('countBooks'));
+    if(date && countBooks != 0)
+        startCountDown(date);
 }
 function createBooksOnPage(url, idElement, addEvent) {
     getJSON(url,  function(err, data) {
@@ -95,26 +99,31 @@ function createBooksOnPage(url, idElement, addEvent) {
                         if(data[index].copies != 0) {
 
                             if(!article.classList.contains('owned')) {
-
-
-                                let value =  orders.toggleOrder(data[index].ID);
-                                let countSelected = orders.getCount();
-                                if(value >= 0) {
-                                    article.classList.toggle('selectedOrder');
-                                    document.getElementById('cart').innerHTML = `<i class="shop icon" ></i> Add to cart (${countSelected})`;
-                                    document.getElementById('info-errors').innerHTML = '';
-                                }
-                                else {
-                                    if(value == -1) {
-                                        document.getElementById('info-errors').innerHTML = 'You can only add to your cart up to 3 books at once!';
+                                
+                                if(!article.classList.contains('due')) {
+                                    let value =  orders.toggleOrder(data[index].ID);
+                                    let countSelected = orders.getCount();
+                                    if(value >= 0) {
+                                        article.classList.toggle('selectedOrder');
+                                        document.getElementById('cart').innerHTML = `<i class="shop icon" ></i> Add to cart (${countSelected})`;
+                                        document.getElementById('info-errors').innerHTML = '';
                                     }
                                     else {
-                                        if(value == -2) {
-                                            document.getElementById('info-errors').innerHTML = 'You can only borrow up to 5 books!';
+                                        if(value == -1) {
+                                            document.getElementById('info-errors').innerHTML = 'You can only add to your cart up to 3 books at once!';
                                         }
+                                        else {
+                                            if(value == -2) {
+                                                document.getElementById('info-errors').innerHTML = 'You can only borrow up to 5 books!';
+                                            }
+                                        }
+                                        
                                     }
-                                    
                                 }
+                                else {
+                                     document.getElementById('info-errors').innerHTML = 'You have due, please return books!';
+                                }
+                                
                             }
                             else {
                                 document.getElementById('info-errors').innerHTML = 'You already have this book!';
@@ -261,6 +270,7 @@ function createBooksOnPageWithDetails(url, idElement) {
 
                     button.setAttribute('onclick', `returnBook(${data[index].ID});`);
                     button.innerHTML = "Return book";
+
                     containerForButton.appendChild(button);
                 }
             }
@@ -293,7 +303,6 @@ function borrowBooks() {
         document.body.appendChild(form);
         form.submit();
     }
-    
 }
 
 
@@ -333,5 +342,63 @@ function returnBook(idBook) {
         let books = localStorage.getItem('countBooks');
         books--;
         localStorage.setItem('countBooks', books);
+
+        let dat = new Date();
+        // dat.setDate(dat.getDate() +1);
+        dat.setTime(dat.getTime()+1*60*1000);
+        localStorage.setItem('date', dat);
+        startCountDown(dat);
+}
+
+function startCountDown(date) {
+    const second = 1000,
+    minute = second * 60,
+    hour = minute * 60,
+    day = hour * 24;
+    let newDate = new Date(date);
+    let countDown = newDate.getTime();
+    x = setInterval(function() {
+
+    let now = new Date().getTime(),
+        distance = countDown - now;
+        if(distance> 0) {
+            let hoursElement = Math.floor((distance % (day)) / (hour)); 
+            let minutesElement = Math.floor((distance % (hour)) / (minute));
+            let secondsElement =  Math.floor((distance % (minute)) / second);
+            if(hoursElement == 0 && minutesElement == 0 && secondsElement == 0)
+            {
+                document.getElementById('hours').innerHTML = '0' + ':',
+                document.getElementById('minutes').innerHTML = '0' + ':',
+                document.getElementById('seconds').innerHTML = '0';
+            }
+            else {
+                document.getElementById('hours').innerHTML = hoursElement + ':',
+                document.getElementById('minutes').innerHTML = minutesElement + ':',
+                document.getElementById('seconds').innerHTML = secondsElement;
+            }
+            let articles = document.querySelectorAll('.book-article');
+            articles.forEach((element) => {
+                if(!element.classList.contains('due')) {
+                    element.classList.remove('due');
+                    element.removeAttribute('data-tooltip', 'You already have this book!');
+                    element.removeAttribute('data-position', 'top center');
+                }
+            });
+        }
+        else {
+            document.getElementById('hours').innerHTML = '0:',
+            document.getElementById('minutes').innerHTML ='0:',
+            document.getElementById('seconds').innerHTML = '0';
+            let articles = document.querySelectorAll('.book-article');
+            articles.forEach((element) => {
+                if(!element.classList.contains('due')) {
+                    element.classList.add('due');
+                    element.setAttribute('data-tooltip', 'You have due! Please return the books!');
+                    element.setAttribute('data-position', 'top center');
+                }
+            });
+
+        }
+    }, second)
 }
 
