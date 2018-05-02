@@ -11,12 +11,12 @@
 .menu-page {
     position: fixed;
 
-    padding-top: 120px;
-    padding-bottom: 100px;
+    padding-top: 9.5em;
+    padding-bottom: 7.5em;
     
     width: 20%;
     height: 100vh;
-    min-width: 250px;
+    min-width: 15.625em;
     display: flex;
     flex-direction: column;
 
@@ -37,32 +37,28 @@
     overflow: hidden;
 }
 .user-info > .user-name {
-    margin-bottom: 10px;
+    margin-bottom:  0.525em;
     color: white;
-    font-size:22px;
+    font-size:1.455em;
 }
 .user-info > .user-email {
     color: #aaaaaa;
-    font-size: 15px;
-}
-.user-section > .user-photo {
-    width: 55px;
-    height: 55px;
+    font-size: 1.0375em;
 }
 
 
 .page-links {
-    margin-top: 100px;
-    margin-bottom: 50px;
+    margin-top: 8.25em;
+    margin-bottom: 4em;
     list-style-type: none;
 }
 
 .link {
     display: flex;
     justify-content: space-between;
-    font-size: 17px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    font-size: 1.2625em;
+    padding-top: 0.875em;
+    padding-bottom: 0.575em;
     padding-left:10%;
     padding-right: 10%;
     align-items:center;
@@ -90,7 +86,7 @@
     
 
 .link i, .footer-menu i{
-    font-size: 29px;
+    font-size: 1.6125em;
 }
 
 
