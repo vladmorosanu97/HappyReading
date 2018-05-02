@@ -47,6 +47,8 @@ function onloadUserInfo() {
             id = data[0].id;
             books = data[0].books;
 
+            localStorage.setItem('ownedBooks', data[0].books);
+
             localStorage.setItem('id', id);
             
             let userFullName = document.getElementById('user-name');
@@ -161,9 +163,15 @@ function createBooksOnPage(url, idElement, addEvent) {
                     copies.setAttribute('class', 'available-books');
     
                     copies.innerHTML = data[index].copies;
-    
+
                     container.appendChild(copies);
-    
+
+                    if(idElement == "books-history") {
+                        let element = document.createElement('h1');
+                        element.classList.add('info-book');
+                        element.innerHTML = data[index].start_date.substring(0,10);
+                        article.appendChild(element);
+                    }
                 }
             }
         }
@@ -271,6 +279,10 @@ function createBooksOnPageWithDetails(url, idElement) {
                     button.setAttribute('onclick', `returnBook(${data[index].ID});`);
                     button.innerHTML = "Return book";
 
+                    let date = document.createElement('h1');
+                    date.setAttribute('class', 'info-book margin-right');
+                    date.innerHTML = data[index].date_borrow.substring(0,10);
+                    containerForButton.appendChild(date);
                     containerForButton.appendChild(button);
                 }
             }
@@ -302,6 +314,14 @@ function borrowBooks() {
         }
         document.body.appendChild(form);
         form.submit();
+    }
+    let countB = Number(localStorage.getItem('ownedBooks'));
+    if(countB == 0) {
+        let dat = new Date();
+        // dat.setDate(dat.getDate() +1);
+        dat.setTime(dat.getTime()+1*60*1000);
+        localStorage.setItem('date', dat);
+        startCountDown(dat);
     }
 }
 
@@ -380,8 +400,8 @@ function startCountDown(date) {
             articles.forEach((element) => {
                 if(!element.classList.contains('due')) {
                     element.classList.remove('due');
-                    element.removeAttribute('data-tooltip', 'You already have this book!');
-                    element.removeAttribute('data-position', 'top center');
+                    element.removeAttribute('data-tooltip');
+                    element.removeAttribute('data-position');
                 }
             });
         }

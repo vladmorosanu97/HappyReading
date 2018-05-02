@@ -46,7 +46,7 @@ app.get('/api/books/:iduser', function(req, res) {
       console.log("Connected!");
     });
       
-    var sql = "SELECT b.ID, b.author, b.country, b.imageLink, b.language, b.link, b.pages,  b.title, b.year, b.copies from books b, current_borrowing c where c.id_book = b.id  and c.id_user = " + mysql.escape(req.params.iduser);
+    var sql = "SELECT b.ID, b.author, b.country, b.imageLink, b.language, b.link, b.pages,  b.title, b.year, b.copies, c.date_borrow from books b, current_borrowing c where c.id_book = b.id  and c.id_user = " + mysql.escape(req.params.iduser);
 
     connection.query(sql, function (err, result) {
       if (err) throw err;
@@ -63,7 +63,7 @@ app.get('/api/books/history/:iduser', function(req, res) {
     console.log("Connected!");
   });
     
-  var sql = "SELECT b.ID, b.author, b.country, b.imageLink, b.language, b.link, b.pages,  b.title, b.year, b.copies from books b, history_borrowed c where c.id_book = b.id  and c.id_user = " + mysql.escape(req.params.iduser);
+  var sql = "SELECT b.ID, b.author, b.country, b.imageLink, b.language, b.link, b.pages,  b.title, b.year, b.copies, c.start_date from books b, history_borrowed c where c.id_book = b.id  and c.id_user = " + mysql.escape(req.params.iduser);
 
   connection.query(sql, function (err, result) {
     if (err) throw err;
