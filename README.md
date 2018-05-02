@@ -1,5 +1,13 @@
 # JavaScriptFullStack-Project
 
+For the Front-End part, I used HTML5, CSS3, JavaScript and a little bit of Semantic UI framework. 
+
+For the Back-End part, I used Express framework and JavaScript. 
+
+For the database, I used MySQL which had a database stored online. 
+
+Back-End shares data with Front-End through JSON. 
+
 In order to be able to borrow books, you need to have an account. To register, you need to fill in your full name, email address and create
 a username and a password, which you will be using when you want to log in. All of the fields are mandatory. You cannot access the online
 library if you don't have an account already. 
