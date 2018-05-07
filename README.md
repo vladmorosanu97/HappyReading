@@ -32,10 +32,10 @@ also see your previous orders, down below.
 How to install:
 
 1. Clone or download the project.
-1. Install node.js from there [Node Js](https://nodejs.org/en/)
+1. Install node.js from there: [Node Js](https://nodejs.org/en/).
 2. Open your cmd and go in the project folder.
 3. Type ``npm install``.
 4. Go in app folder.
-5. Type ``npm install``
-6. Type ``npm start``
+5. Type ``npm install``.
+6. Type ``npm start``.
 7. Now, go in browser at ``localhost:3000`` and enjoy! :D
