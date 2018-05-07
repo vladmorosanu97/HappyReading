@@ -31,7 +31,7 @@ also see your previous orders, down below.
 
 How to install:
 
-1. Clone or download the project.
+1. Clone or download the project (if you downloaded the project, then extract it in a separate folder).
 1. Install node.js from there: [Node Js](https://nodejs.org/en/).
 2. Open your cmd and go in the project folder.
 3. Type ``npm install``.
